@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+$BackgroundOne:white;
+$BackgroundTwo:#1b1c1f;
+
+.App{
+    min-height: 100vh;
+    width: 100%;
+    background-color: $BackgroundTwo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.App__container{
+  width: 100%;
+  min-height: 70vh;
+  max-width: 800px;
+  background-color: $BackgroundOne;
+  border-radius: 1em;
+  padding: 20px;
+}
