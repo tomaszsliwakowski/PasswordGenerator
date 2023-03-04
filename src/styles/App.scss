@@ -1,26 +1,226 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-$BackgroundOne:white;
-$BackgroundTwo:#1b1c1f;
+$BackgroundOne: white;
+$BackgroundTwo: #1b1c1f;
 
-.App{
-    min-height: 100vh;
-    width: 100%;
-    background-color: $BackgroundTwo;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.App__container{
+.App {
+  min-height: 100vh;
   width: 100%;
-  min-height: 70vh;
+  background-color: $BackgroundTwo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.App__container {
+  width: 100%;
+  min-height: 66vh;
   max-width: 800px;
   background-color: $BackgroundOne;
   border-radius: 1em;
-  padding: 20px;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  @media screen and (max-width: 450px) {
+    & {
+      padding: 20px;
+    }
+  }
+}
+
+.App__container__lenght {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  & span {
+    display: flex;
+    justify-content: space-between;
+    & p {
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+  & input {
+    cursor: pointer;
+  }
+}
+
+.App__container__include {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  & p {
+    min-width: 300px;
+    @media screen and (max-width: 300px) {
+      & {
+        min-width: 200px;
+        font-size: 12px;
+      }
+    }
+  }
+  & input {
+    opacity: 0;
+  }
+  & input + label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    display: inline-block;
+    color: #666;
+    line-height: 25px;
+  }
+  & input + label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    outline: 2px solid #aaa;
+    background: #fff;
+    border-radius: 0.3em;
+  }
+  & input:checked + label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    outline: 2px solid rgb(10, 107, 226);
+    background: #fff;
+  }
+  & input:checked + label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    background-image: url("../../assets/check.png");
+    background-size: contain;
+    transform: scale(1);
+    opacity: 1;
+    transition: all 0.3s ease;
+    color: rgb(10, 107, 226);
+  }
+  & input:not(:checked) + label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    background-image: url("../../assets/check.png");
+    background-size: contain;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+  }
+}
+
+.App__container__strenght {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  & span {
+    display: flex;
+    justify-content: space-between;
+    & p:nth-child(1) {
+      font-weight: 600;
+    }
+  }
+}
+.App__container__strenght--show {
+  display: flex;
+  justify-content: space-between;
+  & span {
+    width: 32%;
+    height: 10px;
+    background-color: #aaa;
+    border-radius: 2em;
+  }
+}
+
+.App__container__password {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  & span {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+    border: 1px solid #666;
+    padding: 18px 20px;
+    border-radius: 1em;
+    & {
+      font-size: 20px;
+    }
+    & p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  & svg {
+    font-size: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    cursor: pointer;
+    &.refresh {
+      animation: rotate 0.3s infinite;
+    }
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  & p {
+    display: flex;
+    align-items: center;
+  }
+  & button {
+    width: 100%;
+    padding: 20px 0;
+    border-radius: 1em;
+    background-color: #1b1c1f;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    &.copy {
+      animation: copyPasswd 1s infinite;
+    }
+    @keyframes copyPasswd {
+      0% {
+        background-color: #1b1c1f;
+      }
+      50% {
+        background-color: green;
+        border: 2px solid green;
+      }
+      100% {
+        background-color: #1b1c1f;
+        border: 2px solid #1b1c1f;
+      }
+    }
+  }
+  @media screen and (max-width: 450px) {
+    & button {
+      padding: 18px 20px;
+    }
+  }
 }
