@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/App.scss";
 import { FiRefreshCw, FiCopy } from "react-icons/fi";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import IncludePanel from "./components/Include-panel";
+import RangePanel from "./components/range-panel";
+import StrenghtPanel from "./components/strenght-panel";
+import { characters } from "./characters";
 function App() {
-  const characters = {
-    numbers: "0123456789",
-    upperCaseLetters: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    lowerCaseLetters: "abcdefghijklmnopqrstuvwxyz",
-    specialCharacters: "!'^+%&/()=?_#${[]}|;:>÷`<.*-@é",
-  };
   const [password, setPassword] = useState("");
   const [refreshAnim, setrefreshAnim] = useState(false);
   const [copyAnim, setcopyAnim] = useState(false);
@@ -24,6 +22,7 @@ function App() {
     medium: false,
     high: true,
   });
+
   const changeState = (e) => {
     if (e.target.type === "range") {
       setstate((prev) => ({
@@ -46,6 +45,7 @@ function App() {
       });
     }
   };
+
   const GeneratePassword = () => {
     animateRefresh();
     let characterList = "";
@@ -119,103 +119,13 @@ function App() {
       <div className="App__container">
         <h1>Password Generator</h1>
         <div className="App__container__lenght">
-          <span>
-            <p>Character Lenght</p>
-            <p>{state.range}</p>
-          </span>
-          <input
-            type="range"
-            name="range"
-            min="0"
-            max="50"
-            onChange={changeState}
-            value={state.range}
-          />
+          <RangePanel changeState={changeState} state={state} />
         </div>
         <div className="App__container__include">
-          <p>
-            <input
-              type="checkbox"
-              id="One"
-              name="UpperLetter"
-              onChange={changeState}
-              checked={state.UpperLetter}
-            />
-            <label htmlFor="One">Include Uppercase Letter</label>
-          </p>
-          <p>
-            <input
-              type="checkbox"
-              id="Two"
-              name="LowerLetter"
-              onChange={changeState}
-              checked={state.LowerLetter}
-            />
-            <label htmlFor="Two">Include Lowercase Letter</label>
-          </p>
-          <p>
-            <input
-              type="checkbox"
-              id="Three"
-              name="Numbers"
-              onChange={changeState}
-              checked={state.Numbers}
-            />
-            <label htmlFor="Three">Include Numers</label>
-          </p>
-          <p>
-            <input
-              type="checkbox"
-              id="Four"
-              name="Symbols"
-              onChange={changeState}
-              checked={state.Symbols}
-            />
-            <label htmlFor="Four">Include Symbols</label>
-          </p>
+          <IncludePanel changeState={changeState} state={state} />
         </div>
         <div className="App__container__strenght">
-          <span>
-            <p>Strenght</p>
-            <p>
-              {strenghtState.low
-                ? "Password low strengh"
-                : strenghtState.medium
-                ? "Password medium strengh"
-                : strenghtState.high
-                ? "Password high strengh"
-                : null}
-            </p>
-          </span>
-          <div className="App__container__strenght--show">
-            <span
-              style={
-                strenghtState.low
-                  ? { backgroundColor: "red" }
-                  : strenghtState.medium
-                  ? { backgroundColor: "orange" }
-                  : strenghtState.high
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "#aaa" }
-              }
-            ></span>
-            <span
-              style={
-                strenghtState.medium
-                  ? { backgroundColor: "orange" }
-                  : strenghtState.high
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "#aaa" }
-              }
-            ></span>
-            <span
-              style={
-                strenghtState.high
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "#aaa" }
-              }
-            ></span>
-          </div>
+          <StrenghtPanel strenghtState={strenghtState} />
         </div>
         <div className="App__container__password">
           <span>
