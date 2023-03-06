@@ -7,6 +7,8 @@
 
 $BackgroundOne: white;
 $BackgroundTwo: #1b1c1f;
+$color: #666;
+$color2: #aaa;
 
 .App {
   min-height: 100vh;
@@ -71,8 +73,11 @@ $BackgroundTwo: #1b1c1f;
     padding-left: 30px;
     cursor: pointer;
     display: inline-block;
-    color: #666;
+    color: $color;
     line-height: 25px;
+    &:hover {
+      color: darken($color, 30%);
+    }
   }
   & input + label::before {
     content: "";
@@ -81,8 +86,8 @@ $BackgroundTwo: #1b1c1f;
     top: 2px;
     width: 18px;
     height: 18px;
-    outline: 2px solid #aaa;
-    background: #fff;
+    outline: 2px solid $color2;
+    background: $BackgroundOne;
     border-radius: 0.3em;
   }
   & input:checked + label::before {
@@ -93,7 +98,7 @@ $BackgroundTwo: #1b1c1f;
     width: 18px;
     height: 18px;
     outline: 2px solid rgb(10, 107, 226);
-    background: #fff;
+    background: $BackgroundOne;
   }
   & input:checked + label::after {
     content: "";
@@ -142,7 +147,7 @@ $BackgroundTwo: #1b1c1f;
   & span {
     width: 32%;
     height: 10px;
-    background-color: #aaa;
+    background-color: $color2;
     border-radius: 2em;
   }
 }
@@ -156,7 +161,7 @@ $BackgroundTwo: #1b1c1f;
     justify-content: space-between;
     gap: 5px;
     width: 100%;
-    border: 1px solid #666;
+    border: 1px solid $color;
     padding: 18px 20px;
     border-radius: 1em;
     & {
@@ -193,28 +198,32 @@ $BackgroundTwo: #1b1c1f;
     width: 100%;
     padding: 20px 0;
     border-radius: 1em;
-    background-color: #1b1c1f;
-    color: white;
+    background-color: $BackgroundTwo;
+    color: $BackgroundOne;
     font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    transition: all 0.3s;
     &.copy {
       animation: copyPasswd 1s infinite;
     }
+    &:hover {
+      opacity: 0.9;
+    }
     @keyframes copyPasswd {
       0% {
-        background-color: #1b1c1f;
+        background-color: $BackgroundTwo;
       }
       50% {
         background-color: green;
         border: 2px solid green;
       }
       100% {
-        background-color: #1b1c1f;
-        border: 2px solid #1b1c1f;
+        background-color: $BackgroundTwo;
+        border: 2px solid $BackgroundTwo;
       }
     }
   }
